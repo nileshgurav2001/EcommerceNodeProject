@@ -11,7 +11,7 @@ app.use(body_parser.urlencoded({limit:'50mb', extended: true}));
 app.use(express.static("assets"));
 
 
-mongoose.connect("mongodb+srv://nilesh:nilesh123@cluster0.17rsq.mongodb.net/test");
+mongoose.connect("mongodb+srv://nilesh:nilesh123@cluster0.17rsq.mongodb.net/ecommerce");
 const db = mongoose.connection;
 db.on("error", error=> console.log(error));
 db.on("open", ()=> console.log("Connection Established"));
@@ -42,6 +42,8 @@ app.use("/product", require("./routes/product"));
 app.use("/order", require("./routes/order"));
 app.use("/subscription", require("./routes/subscription"));
 
-app.listen(8081,function(){
+const  PORT = process.env.PORT || 3100;
+
+app.listen(PORT,function(){
     console.log("website is running...");
 })
